@@ -1,0 +1,12 @@
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\controller\GestorController.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\dto\PlataformaResponse.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\dto\SerieRequest.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\dto\SerieResponse.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\exception\GlobalExceptionHandler.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\exception\PlataformaNotFoundException.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\GestorSeriesPlataformesApplication.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\model\Plataforma.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\model\Serie.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\repository\PlataformaRepository.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\repository\SerieRepository.java
+C:\Users\heyne\coding\curso2526\gestor-series-plataformas\gestor-series-plataformes\src\main\java\ifc33b\dwesc\gestor_series_plataformes\service\GestorService.java
