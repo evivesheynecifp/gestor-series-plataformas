@@ -1,0 +1,85 @@
+<div class="py-10 bg-gray-900 h-full overflow-y-auto">
+    <h2 class="text-center mb-8 text-blue-400 font-extrabold text-4xl pb-10">
+        Formulario para añadir nuevas series
+    </h2>
+
+    <!-- Indicador de carga -->
+    @if (carregant()) {
+    <section class="flex flex-col items-center py-8">
+        <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-400 border-t-blue-600 mb-3"></div>
+        <span class="text-gray-400 text-lg">Creando serie...</span>
+    </section>
+    }
+
+    <!-- Mensaje de error -->
+    @if (error()) {
+    <section class="bg-red-900 text-red-400 text-center shadow-lg rounded-2xl p-6 mb-8 border border-red-700">
+        <p class="mb-3 font-semibold text-lg">{{ error()?.message }}</p>
+        <button
+            class="px-5 py-2 border border-red-400 text-red-400 rounded-full hover:bg-red-400 hover:text-black transition-all duration-300 shadow-md"
+            (click)="reload()">
+            Volver a intentar
+        </button>
+    </section>
+    }
+
+    <!-- Formulario -->
+    @if (!carregant() && !error()) {
+    <div class="max-w-lg mx-auto bg-gray-95 rounded-2xl py-8 px-8 shadow-xl border border-gray-800">
+
+        <h2 class="text-blue-400 text-xl font-bold mb-4">Agregar Serie</h2>
+
+        <form [formGroup]="serieForm" (ngSubmit)="afegirSerie()" class="space-y-6">
+
+            <!-- Titulo -->
+            <div>
+                <label class="text-blue-400">Titulo *</label>
+                <input type="text" formControlName="titol" class="bg-gray-800 text-blue-300 rounded px-3 py-2 w-full">
+
+                @if (serieForm.get('titol')?.invalid && serieForm.get('titol')?.touched) {
+                <p class="text-red-400 text-sm mt-1">
+                    @if (serieForm.get('titol')?.errors?.['required']) { El título es obligatorio }
+                    @if (serieForm.get('titol')?.errors?.['minlength']) { Mínimo 3 caracteres }
+                </p>
+                }
+            </div>
+
+            <!-- Genero -->
+            <div>
+                <label class="text-blue-400">Genero *</label>
+                <input type="text" formControlName="genere" class="bg-gray-800 text-blue-300 rounded px-3 py-2 w-full">
+
+                @if (serieForm.get('genere')?.invalid && serieForm.get('genere')?.touched) {
+                <p class="text-red-400 text-sm mt-1">
+                    @if (serieForm.get('genere')?.errors?.['required']) { El título es obligatorio }
+                    @if (serieForm.get('genere')?.errors?.['minlength']) { Mínimo 3 caracteres }
+                </p>
+                }
+            </div>
+
+            <!-- Plataforma -->
+            <div>
+                <label class="text-blue-400">Plataforma *</label>
+                <select formControlName="plataformaId" class="bg-gray-800 text-blue-300 rounded px-3 py-2 w-full">
+                    <option value="" disabled selected>Selecciona una plataforma</option>
+                    @for (plataforma of plataformes(); track plataforma.id) {
+                    <option [value]="plataforma.id">{{ plataforma.nom }}</option>
+                    }
+                </select>
+                @if (serieForm.get('plataformaId')?.invalid && serieForm.get('plataformaId')?.touched) {
+                <p class="text-red-400 text-sm mt-1">
+                    @if (serieForm.get('plataformaId')?.errors?.['required']) { La plataforma es obligatoria }
+                </p>
+                }
+            </div>
+
+            <button type="submit" [disabled]="serieForm.invalid"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded mt-4">
+                Agregar
+            </button>
+
+        </form>
+    </div>
+
+    }
+</div>

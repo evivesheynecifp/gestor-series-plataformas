@@ -1,0 +1,46 @@
+<section class="p-6 bg-gray-900 h-full overflow-y-auto">
+    <h1 class="text-3xl font-bold mb-20 text-center text-white">Plataformas</h1>
+
+    <!-- Indicador de carga -->
+    @if (carregant()) {
+    <section class="flex flex-col items-center py-8">
+        <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-400 border-t-blue-600 mb-3"></div>
+        <span class="text-gray-400 text-lg">Cargando plataformas...</span>
+    </section>
+    }
+
+    <!-- Mensaje de error -->
+    @if (error()) {
+    <section class="bg-red-900 text-red-400 text-center shadow-lg rounded-2xl p-6 mb-8 border border-red-700">
+        <p class="mb-3 font-semibold text-lg">{{ error()?.message }}</p>
+        <button
+            class="px-5 py-2 border border-red-400 text-red-400 rounded-full hover:bg-red-400 hover:text-black transition-all duration-300 shadow-md"
+            (click)="carregarPlataformes()">
+            Volver a intentar
+        </button>
+    </section>
+    }
+
+    <!-- Lista de plataformas -->
+    @if (!carregant() && !error()) {
+
+    <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+        @for (plataforma of plataformes(); track plataforma.id) {
+
+        <!-- Tarjeta de plataforma -->
+        <div class="bg-gray-800 rounded-2xl shadow-lg p-5 flex flex-col">
+
+            <!-- Nombre de la plataforma -->
+            <h2 class="text-xl font-bold text-center text-white mb-4">
+                {{ plataforma.nom }}
+            </h2>
+
+            <button
+                class="bg-gray-900 rounded py-1 px-6 mt-5 w-1/2 mx-auto hover:scale-[1.02] transition-transform cursor-pointer" (click)="carregarSeriesDePlataforma(plataforma.id)">Ver plataformas</button>
+        </div>
+
+        }
+    </section>
+    }
+</section>

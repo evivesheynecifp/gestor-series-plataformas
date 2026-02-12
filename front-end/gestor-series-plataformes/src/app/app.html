@@ -1,0 +1,43 @@
+<header>
+  <nav class="bg-gray-950 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <h1 class="text-xl font-bold text-blue-400">Plataformas y series</h1>
+        </div>
+
+        <!-- Menu Links -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a class="hover:text-blue-300 transition" routerLink="/plataformes">Lista de plataformas</a>
+          <a class="hover:text-blue-300 transition" routerLink="/formulari">Agregar serie</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="flex items-center md:hidden">
+          <button (click)="navOpen = !navOpen" id="menu-btn" class="focus:outline-none">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden bg-black" [class.hidden]="!navOpen">
+      <a class="block px-4 py-2 hover:text-blue-300 transition" routerLink="/plataformes">Lista de plataformas</a>
+      <a class="block px-4 py-2 hover:text-blue-300 transition" routerLink="/formulari">Agregar serie</a>
+    </div>
+  </nav>
+</header>
+
+<main class="bg-black text-white h-full">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="bg-gray-950 text-white text-center py-3">
+  <div class="max-w-7xl mx-auto px-4">
+    <p class="mb-0 text-gray-400">Gestor de plataformas y series con Spring Boot + Angular</p>
+  </div>
+</footer>

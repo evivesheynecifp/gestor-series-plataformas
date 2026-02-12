@@ -1,0 +1,106 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http:/www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+.vscode
+
+# Frontend
+
+# Compiled output
+/front-end/gestor-series-plataformes/dist
+/front-end/gestor-series-plataformes/tmp
+/front-end/gestor-series-plataformes/out-tsc
+/front-end/gestor-series-plataformes/bazel-out
+
+# Node
+/front-end/gestor-series-plataformes/node_modules
+/front-end/gestor-series-plataformes/npm-debug.log
+/front-end/gestor-series-plataformes/yarn-error.log
+
+# IDEs and editors
+/front-end/gestor-series-plataformes/.idea/
+/front-end/gestor-series-plataformes/.project
+/front-end/gestor-series-plataformes/.classpath
+/front-end/gestor-series-plataformes/.c9/
+/front-end/gestor-series-plataformes/*.launch
+/front-end/gestor-series-plataformes/.settings/
+/front-end/gestor-series-plataformes/*.sublime-workspace
+
+# Visual Studio Code
+/front-end/gestor-series-plataformes/.vscode/*
+/front-end/gestor-series-plataformes/!.vscode/settings.json
+/front-end/gestor-series-plataformes/!.vscode/tasks.json
+/front-end/gestor-series-plataformes/!.vscode/launch.json
+/front-end/gestor-series-plataformes/!.vscode/extensions.json
+/front-end/gestor-series-plataformes/.history/*
+
+# Miscellaneous
+/front-end/gestor-series-plataformes/.angular/cache
+/front-end/gestor-series-plataformes/.sass-cache/
+/front-end/gestor-series-plataformes/connect.lock
+/front-end/gestor-series-plataformes/coverage
+/front-end/gestor-series-plataformes/libpeerconnection.log
+/front-end/gestor-series-plataformes/testem.log
+/front-end/gestor-series-plataformes/typings
+/front-end/gestor-series-plataformes/__screenshots__/
+
+# System files
+/front-end/gestor-series-plataformes/.DS_Store
+/front-end/gestor-series-plataformes/Thumbs.db
+
+# Backend
+
+/back-end/gestor-series-plataformes/HELP.md
+/back-end/gestor-series-plataformes/target/
+/back-end/gestor-series-plataformes/.mvn/wrapper/maven-wrapper.jar
+/back-end/gestor-series-plataformes/!**/src/main/**/target/
+/back-end/gestor-series-plataformes/!**/src/test/**/target/
+
+### STS ###
+/back-end/gestor-series-plataformes/.apt_generated
+/back-end/gestor-series-plataformes/.classpath
+/back-end/gestor-series-plataformes/.factorypath
+/back-end/gestor-series-plataformes/.project
+/back-end/gestor-series-plataformes/.settings
+/back-end/gestor-series-plataformes/.springBeans
+/back-end/gestor-series-plataformes/.sts4-cache
+
+### IntelliJ IDEA ###
+/back-end/gestor-series-plataformes/.idea
+/back-end/gestor-series-plataformes/*.iws
+/back-end/gestor-series-plataformes/*.iml
+/back-end/gestor-series-plataformes/*.ipr
+
+### NetBeans ###
+/back-end/gestor-series-plataformes/nbproject/private/
+/back-end/gestor-series-plataformes/nbbuild/
+/back-end/gestor-series-plataformes/dist/
+/back-end/gestor-series-plataformes/nbdist/
+/back-end/gestor-series-plataformes/.nb-gradle/
+/back-end/gestor-series-plataformes/build/
+/back-end/gestor-series-plataformes/!**/src/main/**/build/
+/back-end/gestor-series-plataformes/!**/src/test/**/build/
+
+### VS Code ###
+/back-end/gestor-series-plataformes/.vscode/
