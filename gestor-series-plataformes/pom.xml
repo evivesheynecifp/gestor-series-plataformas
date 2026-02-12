@@ -14,6 +14,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gestor-series-plataformes</name>
 	<description>Gestor de series y plataformas</description>
+	<packaging>war</packaging>
 	<url />
 	<licenses>
 		<license />
