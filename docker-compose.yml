@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: database_heyne
+      POSTGRES_USER: heyne
+      POSTGRES_PASSWORD: heyne123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  tomcat:
+    image: tomcat:10.1-jdk21
+    container_name: tomcat_app
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./gestor-series-plataformes/target/gestor-series-plataformes-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: database_heyne
+      DB_USER: heyne
+      DB_PASSWORD: heyne123
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
