@@ -55,6 +55,24 @@ class GestorControllerIntegrationTest {
                 .andExpect(jsonPath("$.length()").value(0));
     }
 
+    // GET /api/series/plataforma/{id} - invalid ID formats
+    @Test
+    @DisplayName("Should return 400 for invalid platform ID format")
+    void shouldReturn400ForInvalidPlatformIdFormat() throws Exception {
+        mockMvc.perform(get("/api/series/plataforma/abc"))
+                .andExpect(status().isBadRequest());
+    }
+
+    // GET /api/series/plataforma/{id} - verify single series returned
+    @Test
+    @DisplayName("Should return a single series for platform 10")
+    void shouldReturnSingleSeriesForPlatform10() throws Exception {
+        mockMvc.perform(get("/api/series/plataforma/10"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(1))
+                .andExpect(jsonPath("$[0].titol").value("Attack Titan"));
+    }
+
     // POST /api/series
     @Test
     @DisplayName("Should create a new serie")
@@ -76,12 +94,66 @@ class GestorControllerIntegrationTest {
                 .andExpect(jsonPath("$.genere").value("Drama"));
     }
 
+    // POST /api/series - Missing required fields
     @Test
     @DisplayName("Should fail when title is missing")
     void shouldFailWhenTitleMissing() throws Exception {
 
         String invalidSerie = """
                 {
+                    "genere": "Drama",
+                    "plataformaId": 1
+                }
+                """;
+
+        mockMvc.perform(post("/api/series")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(invalidSerie))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("Should fail when genere is missing")
+    void shouldFailWhenGenereMissing() throws Exception {
+
+        String invalidSerie = """
+                {
+                    "title": "New Serie",
+                    "plataformaId": 1
+                }
+                """;
+
+        mockMvc.perform(post("/api/series")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(invalidSerie))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("Should fail when plataforma is missing")
+    void shouldFailWhenPlatformMissing() throws Exception {
+
+        String invalidSerie = """
+                {
+                    "titol": "New Serie",
+                    "genere": "Drama"
+                }
+                """;
+
+        mockMvc.perform(post("/api/series")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(invalidSerie))
+                .andExpect(status().isBadRequest());
+    }
+
+    // POST /api/series - Field length validations (Short)
+    @Test
+    @DisplayName("Should fail when title is too short")
+    void shouldFailWhenTitleTooShort() throws Exception {
+
+        String invalidSerie = """
+                {
+                    "titol": "AB",
                     "genere": "Drama",
                     "plataformaId": 1
                 }
@@ -111,50 +183,7 @@ class GestorControllerIntegrationTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
-    @DisplayName("Should fail when platform is missing")
-    void shouldFailWhenPlatformMissing() throws Exception {
-
-        String invalidSerie = """
-                {
-                    "titol": "SerieTest",
-                    "genere": "Drama"
-                }
-                """;
-
-        mockMvc.perform(post("/api/series")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(invalidSerie))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    @DisplayName("Should fail when title is too short")
-    void shouldFailWhenTitleTooShort() throws Exception {
-
-        String invalidSerie = """
-                {
-                    "titol": "AB",
-                    "genere": "Drama",
-                    "plataformaId": 1
-                }
-                """;
-
-        mockMvc.perform(post("/api/series")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(invalidSerie))
-                .andExpect(status().isBadRequest());
-    }
-
-    // GET /api/series/plataforma/{id} - invalid ID formats
-    @Test
-    @DisplayName("Should return 400 for invalid platform ID format")
-    void shouldReturn400ForInvalidPlatformIdFormat() throws Exception {
-        mockMvc.perform(get("/api/series/plataforma/abc"))
-                .andExpect(status().isBadRequest());
-    }
-
-    // POST /api/series - title too long
+    // POST /api/series - Field length validations (Long)
     @Test
     @DisplayName("Should fail when title is too long")
     void shouldFailWhenTitleTooLong() throws Exception {
@@ -172,7 +201,6 @@ class GestorControllerIntegrationTest {
                 .andExpect(status().isBadRequest());
     }
 
-    // POST /api/series - genre too long
     @Test
     @DisplayName("Should fail when genre is too long")
     void shouldFailWhenGenreTooLong() throws Exception {
@@ -190,7 +218,7 @@ class GestorControllerIntegrationTest {
                 .andExpect(status().isBadRequest());
     }
 
-    // POST /api/series - duplicate title allowed (if allowed by your logic)
+    // POST /api/series - Duplicate title on same platform
     @Test
     @DisplayName("Should allow creating series with same title on different platform")
     void shouldAllowDuplicateTitleDifferentPlatform() throws Exception {
@@ -209,15 +237,4 @@ class GestorControllerIntegrationTest {
                 .andExpect(jsonPath("$.titol").value("Dark"))
                 .andExpect(jsonPath("$.genere").value("SciFi"));
     }
-
-    // GET /api/series/plataforma/{id} - verify single series returned
-    @Test
-    @DisplayName("Should return a single series for platform 10")
-    void shouldReturnSingleSeriesForPlatform10() throws Exception {
-        mockMvc.perform(get("/api/series/plataforma/10"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$[0].titol").value("Attack Titan"));
-    }
-
 }
