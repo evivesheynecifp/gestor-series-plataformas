@@ -58,7 +58,7 @@ jobs:
           echo "Waiting for PostgreSQL to be healthy..."
 
           for i in {1..30}; do
-            $STATUS=$(docker inspect --format='{{.State.Health.Status}}' $(docker-compose -f docker-compose.yml ps -q postgres))
+            STATUS=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose -f docker-compose.yml ps -q postgres))
             echo "PostgreSQL health status: $STATUS"
             if [ "$STATUS" = "healthy" ]; then
               echo "PostgreSQL is healthy!"
@@ -70,7 +70,7 @@ jobs:
           echo "Waiting for Tomcat to be healthy..."
 
           for i in {1..30}; do
-            $STATUS=$(docker inspect --format='{{.State.Health.Status}}' $(docker-compose -f docker-compose.yml ps -q tomcat))
+            STATUS=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose -f docker-compose.yml ps -q tomcat))
             echo "Tomcat health status: $STATUS"
             if [ "$STATUS" = "healthy" ]; then
               echo "Tomcat is healthy!"
