@@ -16,7 +16,7 @@ import ifc33b.dwesc.gestorseriesplataformes.repository.PlataformaRepository;
 import ifc33b.dwesc.gestorseriesplataformes.repository.SerieRepository;
 
 @Service
-public class GestorService {
+public final class GestorService {
 
     private final PlataformaRepository plataformaRepository;
     private final SerieRepository serieRepository;
