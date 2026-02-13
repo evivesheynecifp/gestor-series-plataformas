@@ -18,6 +18,7 @@ import lombok.Data;
 @Data
 @Table(name = "plataforma")
 public class Plataforma {
+
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +32,10 @@ public class Plataforma {
     private List<Serie> series = new ArrayList<>();
 
     // Constructores
-    public Plataforma() {}
+    public Plataforma() {
+    }
 
-    public Plataforma(String nom) {
-        this.setNom(nom);
+    public Plataforma(final String nom) {
+        this.nom = nom;
     }
 }

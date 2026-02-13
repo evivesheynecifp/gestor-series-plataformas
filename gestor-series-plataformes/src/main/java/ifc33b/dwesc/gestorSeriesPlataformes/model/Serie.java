@@ -46,9 +46,10 @@ public class Serie {
     public Serie() {
     }
 
-    public Serie(String titol, String genere, Plataforma plataforma) {
-        this.setTitol(titol);
-        this.setGenere(genere);
-        this.setPlataforma(plataforma);
+    public Serie(final String titol, final String genere, final Plataforma plataforma) {
+        this.titol = titol;
+        this.genere = genere;
+        this.plataforma = plataforma;
     }
+
 }
