@@ -18,10 +18,14 @@ import ifc33b.dwesc.gestorseriesplataformes.repository.SerieRepository;
 @Service
 public class GestorService {
 
+    private final PlataformaRepository plataformaRepository;
+    private final SerieRepository serieRepository;
+
     @Autowired
-    PlataformaRepository plataformaRepository;
-    @Autowired
-    SerieRepository serieRepository;
+    public GestorService(PlataformaRepository plataformaRepository, SerieRepository serieRepository) {
+        this.plataformaRepository = plataformaRepository;
+        this.serieRepository = serieRepository;
+    }
 
     // Devuelve todas las plataformas
     public List<PlataformaResponse> getPlataformes() {
