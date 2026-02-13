@@ -22,7 +22,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class GestorServiceTest {
+class GestorServiceTests {
 
     @Mock
     private PlataformaRepository plataformaRepository;
