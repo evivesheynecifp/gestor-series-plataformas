@@ -14,12 +14,21 @@ services:
     networks:
       - app-network
 
+    # Health check for PostgreSQL - Avoid early conection attempts
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U heyne -d database_heyne -h localhost -p 5432 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   tomcat:
     image: tomcat:10.1-jdk21
     container_name: tomcat_app
     restart: unless-stopped
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+
     ports:
       - "8080:8080"
     volumes:
@@ -32,6 +41,13 @@ services:
       DB_PASSWORD: heyne123
     networks:
       - app-network
+
+    # Health check for Tomcat - Ensure the application is up and running
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
 
 volumes:
   postgres_data:
