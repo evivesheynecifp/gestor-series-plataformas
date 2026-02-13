@@ -42,6 +42,10 @@ jobs:
     needs: build-and-test
 
     steps:
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Build Docker images
         run: docker compose -f ./docker-compose.yml build
 
