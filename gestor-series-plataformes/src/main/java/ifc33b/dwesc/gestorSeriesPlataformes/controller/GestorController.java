@@ -1,4 +1,4 @@
-package ifc33b.dwesc.gestor_series_plataformes.controller;
+package ifc33b.dwesc.gestorseriesplataformes.controller;
 
 import java.util.List;
 
@@ -9,20 +9,22 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ifc33b.dwesc.gestor_series_plataformes.dto.PlataformaResponse;
-import ifc33b.dwesc.gestor_series_plataformes.dto.SerieRequest;
-import ifc33b.dwesc.gestor_series_plataformes.dto.SerieResponse;
-import ifc33b.dwesc.gestor_series_plataformes.service.GestorService;
+import ifc33b.dwesc.gestorseriesplataformes.dto.PlataformaResponse;
+import ifc33b.dwesc.gestorseriesplataformes.dto.SerieRequest;
+import ifc33b.dwesc.gestorseriesplataformes.dto.SerieResponse;
+import ifc33b.dwesc.gestorseriesplataformes.service.GestorService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class GestorController {
+
     @Autowired
     private GestorService gestorService;
 

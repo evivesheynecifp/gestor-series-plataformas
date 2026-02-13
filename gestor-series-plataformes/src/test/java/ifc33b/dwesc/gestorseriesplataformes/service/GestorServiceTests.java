@@ -1,4 +1,4 @@
-package ifc33b.dwesc.gestor_series_plataformes.service;
+package ifc33b.dwesc.gestorseriesplataformes.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -6,12 +6,12 @@ import static org.mockito.Mockito.*;
 import java.util.List;
 import java.util.Optional;
 
-import ifc33b.dwesc.gestor_series_plataformes.dto.SerieRequest;
-import ifc33b.dwesc.gestor_series_plataformes.exception.PlataformaNotFoundException;
-import ifc33b.dwesc.gestor_series_plataformes.model.Plataforma;
-import ifc33b.dwesc.gestor_series_plataformes.model.Serie;
-import ifc33b.dwesc.gestor_series_plataformes.repository.PlataformaRepository;
-import ifc33b.dwesc.gestor_series_plataformes.repository.SerieRepository;
+import ifc33b.dwesc.gestorseriesplataformes.dto.SerieRequest;
+import ifc33b.dwesc.gestorseriesplataformes.exception.PlataformaNotFoundException;
+import ifc33b.dwesc.gestorseriesplataformes.model.Plataforma;
+import ifc33b.dwesc.gestorseriesplataformes.model.Serie;
+import ifc33b.dwesc.gestorseriesplataformes.repository.PlataformaRepository;
+import ifc33b.dwesc.gestorseriesplataformes.repository.SerieRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

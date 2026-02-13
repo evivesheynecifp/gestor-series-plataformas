@@ -1,4 +1,4 @@
-package ifc33b.dwesc.gestor_series_plataformes.dto;
+package ifc33b.dwesc.gestorseriesplataformes.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

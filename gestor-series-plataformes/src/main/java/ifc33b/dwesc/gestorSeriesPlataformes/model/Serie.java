@@ -1,4 +1,4 @@
-package ifc33b.dwesc.gestor_series_plataformes.model;
+package ifc33b.dwesc.gestorseriesplataformes.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

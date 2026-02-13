@@ -1,4 +1,4 @@
-package ifc33b.dwesc.gestor_series_plataformes.exception;
+package ifc33b.dwesc.gestorseriesplataformes.exception;
 
 public class PlataformaNotFoundException extends RuntimeException {
     public PlataformaNotFoundException(Long id) {

@@ -1,4 +1,4 @@
-package ifc33b.dwesc.gestor_series_plataformes;
+package ifc33b.dwesc.gestorseriesplataformes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package ifc33b.dwesc.gestor_series_plataformes.service;
+package ifc33b.dwesc.gestorseriesplataformes.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,17 +6,18 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ifc33b.dwesc.gestor_series_plataformes.dto.PlataformaResponse;
-import ifc33b.dwesc.gestor_series_plataformes.dto.SerieRequest;
-import ifc33b.dwesc.gestor_series_plataformes.dto.SerieResponse;
-import ifc33b.dwesc.gestor_series_plataformes.exception.PlataformaNotFoundException;
-import ifc33b.dwesc.gestor_series_plataformes.model.Plataforma;
-import ifc33b.dwesc.gestor_series_plataformes.model.Serie;
-import ifc33b.dwesc.gestor_series_plataformes.repository.PlataformaRepository;
-import ifc33b.dwesc.gestor_series_plataformes.repository.SerieRepository;
+import ifc33b.dwesc.gestorseriesplataformes.dto.PlataformaResponse;
+import ifc33b.dwesc.gestorseriesplataformes.dto.SerieRequest;
+import ifc33b.dwesc.gestorseriesplataformes.dto.SerieResponse;
+import ifc33b.dwesc.gestorseriesplataformes.exception.PlataformaNotFoundException;
+import ifc33b.dwesc.gestorseriesplataformes.model.Plataforma;
+import ifc33b.dwesc.gestorseriesplataformes.model.Serie;
+import ifc33b.dwesc.gestorseriesplataformes.repository.PlataformaRepository;
+import ifc33b.dwesc.gestorseriesplataformes.repository.SerieRepository;
 
 @Service
 public class GestorService {
+
     @Autowired
     PlataformaRepository plataformaRepository;
     @Autowired
