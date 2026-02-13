@@ -15,10 +15,19 @@ import ifc33b.dwesc.gestorseriesplataformes.model.Serie;
 import ifc33b.dwesc.gestorseriesplataformes.repository.PlataformaRepository;
 import ifc33b.dwesc.gestorseriesplataformes.repository.SerieRepository;
 
+/**
+ * Service class to manage series and platforms.
+ */
 @Service
 public final class GestorService {
 
+    /**
+     * Repository to manage platforms.
+     */
     private final PlataformaRepository plataformaRepository;
+    /**
+     * Repository to manage series.
+     */
     private final SerieRepository serieRepository;
 
     @Autowired

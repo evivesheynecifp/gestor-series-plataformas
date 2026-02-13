@@ -3,6 +3,9 @@ package ifc33b.dwesc.gestorseriesplataformes.dto;
 import ifc33b.dwesc.gestorseriesplataformes.model.Plataforma;
 import lombok.Data;
 
+/**
+ * Response object for Plataforma entity.
+ */
 @Data
 public class PlataformaResponse {
 

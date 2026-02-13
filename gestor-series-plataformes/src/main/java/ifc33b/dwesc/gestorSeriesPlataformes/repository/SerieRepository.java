@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import ifc33b.dwesc.gestorseriesplataformes.model.Serie;
 
+/**
+ * Repository to manage Serie entity in database.
+ */
 public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     // Obtener las series de una plataforma

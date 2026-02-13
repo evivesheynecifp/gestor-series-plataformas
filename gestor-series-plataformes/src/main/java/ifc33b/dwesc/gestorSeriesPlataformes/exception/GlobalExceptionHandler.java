@@ -6,9 +6,12 @@ import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Global exception handler to return error HTTP responses.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    
+
     // Plataforma no encontrada
     @ExceptionHandler(PlataformaNotFoundException.class)
     public ResponseEntity<ErrorResponse> handlePlataformaNotFoundException(PlataformaNotFoundException ex) {

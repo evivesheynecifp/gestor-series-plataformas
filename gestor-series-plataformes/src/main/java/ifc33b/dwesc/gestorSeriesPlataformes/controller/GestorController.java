@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
+/**
+ * Main controller. Used to handle all petitions to the API regarding series and
+ * platforms.
+ */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")

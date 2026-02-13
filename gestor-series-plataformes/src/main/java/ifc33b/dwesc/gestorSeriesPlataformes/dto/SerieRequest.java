@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+/**
+ * Request object for creating a Serie entity.
+ */
 @Data
 public class SerieRequest {
 

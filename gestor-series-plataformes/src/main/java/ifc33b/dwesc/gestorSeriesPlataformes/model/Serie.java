@@ -13,6 +13,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+/**
+ * Series model. Represents a TV series that belongs to a streaming platform.
+ */
 @Entity
 @Data
 @Table(name = "serie")

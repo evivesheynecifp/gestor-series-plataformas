@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+/**
+ * Main class of the application. Used to start the Spring Boot application.
+ */
 @SpringBootApplication
 public class GestorSeriesPlataformesApplication extends SpringBootServletInitializer {
 

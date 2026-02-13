@@ -14,6 +14,10 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+/**
+ * Model for Plataforma. Represents a streaming platform that can have multiple
+ * Series.
+ */
 @Entity
 @Data
 @Table(name = "plataforma")
