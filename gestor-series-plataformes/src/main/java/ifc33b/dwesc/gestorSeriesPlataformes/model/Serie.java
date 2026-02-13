@@ -17,18 +17,23 @@ import lombok.Data;
 @Data
 @Table(name = "serie")
 public class Serie {
+
+    // Constantes para validación
+    private static final int MIN_TITLE_LENGTH = 3;
+    private static final int MAX_TITLE_LENGTH = 25;
+
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Se requiere un titulo para la serie")
-    @Size(min = 3, max = 25, message = "El título debe de tener entre 3 y 25 caracteres")
+    @Size(min = MIN_TITLE_LENGTH, max = MAX_TITLE_LENGTH, message = "El título debe de tener entre 3 y 25 caracteres")
     @Column(nullable = false)
     private String titol;
-    
+
     @NotBlank(message = "Se requiere un genero para la serie")
-    @Size(min = 3, max = 25, message = "El genero debe de tener entre 3 y 25 caracteres")
+    @Size(min = MIN_TITLE_LENGTH, max = MAX_TITLE_LENGTH, message = "El genero debe de tener entre 3 y 25 caracteres")
     @Column(nullable = false)
     private String genere;
 
@@ -38,7 +43,8 @@ public class Serie {
     private Plataforma plataforma;
 
     // Constructores
-    public Serie() {}
+    public Serie() {
+    }
 
     public Serie(String titol, String genere, Plataforma plataforma) {
         this.setTitol(titol);
