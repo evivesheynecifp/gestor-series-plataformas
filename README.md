@@ -1,272 +1,191 @@
-# Gestor de series y plataformas
+# CI/CD | Pipeline con app web Java: Fase 3
 
-Aplicación que gestiona series y plataformas con backend en Spring Boot y frontend en Angular.
+**Erik Vives von Heyne**
 
-## Requisitos
+---
 
-- Java 21
-- Maven
-- Node.js 18+ (para el frontend)
-- npm
+# API
 
-## Estructura de Carpetas
+La api utilizada para este proyecto es un **clone** del back end del compañero _Cristian Pérez_.
 
-### Backend (Spring Boot)
-- `back-end/gestor-series-plataformes/` - Aplicación Spring Boot
-  - `src/main/java/ifc33b/dwesc/gestor_series_plataformes/` - Código fuente Java
-    - `controller` - Controladores
-    - `dto` - Modelos de transferencia entre front y back
-    - `model` - Modelos Java
-    - `repository` - JPA
-    - `service` - Lógica de negocio
-    - `exception` - Control de excepciones
-  - `src/main/resources/` - Recursos de la aplicación
-  - `src/test/` - Tests unitarios
-  - `pom.xml` - Dependencias Maven
+El back end / API es un gestor de series y plataformas con una simple Base de Datos que gestiona estos dos modelos entre si.
 
-### Frontend (Angular)
-- `front-end/gestor-series-plataformes/` - Aplicación Angular
-  - `src/app/` - Código Angular
-    - `components/` - Componentes reutilizables
-    - `models/` - Modelos TypeScript
-    - `services/` - Servicios (comunicación con backend)
-  - `src/` - Assets y configuración
-  - `package.json` - Dependencias npm
+## Tecnologías
 
-## Instalación
-
-### Backend
-
-1. Acceder a la carpeta del backend:
-```bash
-cd back-end/gestor-series-plataformes
+```powershell
+    - Maven 3.9.11
+    - JDK 21
+    - PostgreSQL 15
 ```
 
-2. Compilar y ejecutar:
-```bash
+## Tree view
+
+```java
+├───.github
+│   └───workflows // Workflow creado
+└───gestor-series-plataformes
+    ├───src // Codigo fuente
+    │   ├───main
+    │   │   ├───java
+    │   │   │   └───ifc33b
+    │   │   │       └───dwesc
+    │   │   │           └───gestorseriesplataformes // Back end
+    │   │   │               ├───controller
+    │   │   │               ├───dto
+    │   │   │               ├───exception
+    │   │   │               ├───model
+    │   │   │               ├───repository
+    │   │   │               └───service
+    │   │   └───resources // Base de datos
+    │   │       └───sql
+    │   └───test // Codigo para tests
+    │       ├───java
+    │       │   └───ifc33b
+    │       │       └───dwesc
+    │       │           └───gestorseriesplataformes
+    │       │               ├───controller
+    │       │               └───service
+    │       └───resources
+    │           └───sql
+    └───target // Almacenamiento de compilaciones
+```
+
+# Ejecución
+
+## Preparativos
+
+Aquí se detallan los pasos previos antes de ejecutar nada.
+
+### Usar directorio correcto
+
+Es necesario usar el directorio `gestor-series-tareas` para ejecutar maven, ya que es donde esta situado el pom.xml
+
+### Instalar dependencias
+
+```powershell
+mvn install
+```
+
+## Iniciar con fixtures
+
+El back end proporcionado carga sus propios datos (fixtures) para cuando se ejecuta normalmente, y tiene otros separados para ejecutar durante los tests
+
+```powershell
 mvn spring-boot:run
 ```
 
-El servidor estará disponible en `http://localhost:8080`
+## Iniciar tests
 
-### Frontend
-
-1. Acceder a la carpeta del frontend:
-```bash
-cd front-end/gestor-series-plataformes
+```powershell
+mvn test
 ```
 
-2. Instalar dependencias:
-```bash
-npm install
+## Comandos CURL
+
+**Crear Serie**
+
+```powershell
+curl -X POST http://localhost:8080/api/series \
+  -H "Content-Type: application/json" \
+  -d '{
+    "titulo": "Breaking Bad",
+    "temporadas": 5,
+    "plataformaId": 1
+  }'
 ```
 
-3. Ejecutar servidor de desarrollo:
-```bash
-npm start
+**Obtener Plataformas**
+
+```powershell
+curl -X GET http://localhost:8080/api/plataformes \
+  -H "Accept: application/json"
 ```
 
-La aplicación estará disponible en `http://localhost:4200`
+**Obtener Serie por Plataforma ID**
 
-## Desarrollo
-
-### Backend
-
-El backend está construido con:
-- **Spring Boot 3.x** - Framework web
-- **Spring Data JPA** - Acceso a datos
-- **Maven** - Gestor de dependencias
-
-### Frontend
-
-El frontend está construido con:
-- **Angular 18+** - Framework de desarrollo
-- **TypeScript** - Lenguaje de programación
-- **TailwindCSS** - Estilos
-- **npm** - Gestor de dependencias
-
-## Endpoints API
-
-La API está disponible en `http://localhost:8080/api`
-
-### Tabla Resumen de Endpoints
-
-| Método | Ruta | Descripción | Status |
-|--------|------|-------------|--------|
-| GET | `/api/plataformes` | Obtener todas las plataformas | 200 |
-| GET | `/api/series/plataforma/{id}` | Obtener las series de una plataforma | 200 |
-| POST | `/api/series` | Añadir una nueva serie a una plataforma | 201 |
-
-### Endpoints detallados
-
-#### 1. Obtener todas las plataformas
-
-**GET** `/api/plataformes`
-
-Devuelve la lista de plataformas.
-
-**Response (200 OK):**
-```json
-[
-  { "id": 1, "nom": "Netflix" },
-  { "id": 2, "nom": "Disney+" }
-]
+```powershell
+curl -X GET http://localhost:8080/api/series/plataforma/1 \
+  -H "Accept: application/json"
 ```
 
----
+# Tests
 
-#### 2. Obtener las series de una plataforma
+## Unitarios
 
-**GET** `/api/series/plataforma/{id}`
+### GestorServiceTests
 
-Obtiene todas las series asociadas a la plataforma con el `id` proporcionado.
+Se está testeando la clase **GestorService** usando **Mockito** para simular (@Mock) los repositorios y con **JUnit** se crean los tests.
 
-**Response (200 OK):**
-```json
-[
-  { "id": 1, "titol": "Stranger Things", "genere": "Drama", "plataformaId": 1 },
-  { "id": 2, "titol": "Dark", "genere": "Ciencia ficción", "plataformaId": 1 }
-]
-```
+No se accede a base de datos real si no a un fixture de JPA en H2 (En memoria volátil).
 
----
+> [!NOTE]
+> Se esta probando la clase **GestorService** creando y buscando Series y Plataformas.
+> Tambien se comprueba que devuelva null o errores en ciertas condiciones.
 
-#### 3. Añadir una nueva serie a una plataforma
+## Integración
 
-**POST** `/api/series`
+### GestorControllerIntegrationTest
 
-Crea una nueva serie y la asocia a la plataforma indicada.
+Se está testeando la clase **GestorController** como un **test de integración** usando **SpringBootTest** y **MockMvc**.
 
-**Headers:**
-```
-Content-Type: application/json
-```
+A diferencia del test unitario del servicio, aquí:
 
-**Request Body:** (ejemplo)
-```json
-{
-  "titol": "Mi Serie",
-  "genere": "Comedia",
-  "plataformaId": 1
-}
-```
+Se levanta el **contexto completo de Spring** y se cargan los controladores, servicios y repositorios reales. Se sigue usando un perfil `"test"` con base de datos **H2 en memoria**
 
-**Parámetros requeridos:**
-- `titol` (string, obligatorio): Nombre de la serie, entre 3 y 25 caracteres
-- `genere` (string, obligatorio): Genero de la serie, entre 3 y 25 caracteres
-- `plataformaId` (int, obligatorio): ID de la plataforma a la que pertenece
+Debido a que se carga el entorno completo ya no se hace uso de los **Mocks**
 
-**Response (201 Created):**
-```json
-{
-  "id": 3,
-  "titol": "Mi Serie",
-  "genere": "Comedia",
-  "plataformaId": 1
-}
-```
+Se simulan peticiones HTTP reales (`GET`, `POST`) contra la API.
 
----
+> [!NOTE]  
+> Se está probando el comportamiento completo de la API:
+>
+> - Endpoints GET y POST
+> - Validaciones de campos (@Valid)
+> - Códigos HTTP correctos (200, 201, 400)
+> - Respuestas JSON esperadas
+> - Integración real entre Controlador, Servicio y Repositorio
 
-### Ejemplos con cURL
+## Workflow CI.yml
 
-Obtener plataformas:
-```bash
-curl -X GET "http://localhost:8080/api/plataformes"
-```
+Este workflow define un proceso de Integración Continua (CI) usando GitHub Actions.  
+Se ejecuta automáticamente cuando hay un `push` o un `pull_request` sobre la rama `main`.
 
-Obtener series de la plataforma 1:
-```bash
-curl -X GET "http://localhost:8080/api/series/plataforma/1"
-```
+Utiliza:
 
-Crear una serie:
-```bash
-curl -v -X POST "http://localhost:8080/api/series" -H "Content-Type: application/json" --data-raw '{"titol":"Mi Serie","genere":"Comedia","plataformaId":1}'
-```
+- Ubuntu como entorno de ejecución
+- JDK 21
+- Maven
+- Checkstyle
+- Docker y Docker Compose
+- Contenedores de PostgreSQL y Tomcat
 
-## Estructura del Proyecto
+El workflow está dividido en dos grandes jobs.
 
-```
-gestor-series-plataformes/
-├── README.md
-├── back-end/
-│   └── gestor-series-plataformes/
-│       ├── mvnw
-│       ├── mvnw.cmd
-│       ├── pom.xml
-│       ├── src/
-│       │   ├── main/
-│       │   │   ├── java/ifc33b/dwesc/gestor-series-plataformes/
-│       │   │   │   ├── GestorSeriesPlataformesApplication.java
-│       │   │   │   ├── controller/
-│       │   │   │   │   └── GestorController.java
-│       │   │   │   ├── dto/
-│       │   │   │   │   ├── PlataformaResponse.java
-│       │   │   │   │   ├── SerieRequest.java
-│       │   │   │   │   └── SerieResponse.java
-│       │   │   │   ├── model/
-│       │   │   │   │   ├── Plataforma.java
-│       │   │   │   │   └── Serie.java
-│       │   │   │   ├── repository/
-│       │   │   │   │   ├──   PlataformaRepository.java
-│       │   │   │   │   └──   SerieRepository.java
-│       │   │   │   ├── service/
-│       │   │   │   │   └──  GestorService.java
-│       │   │   │   └── exception/
-│       │   │   │       ├── GlobalExceptionHandler.java
-│       │   │   │       └── PlataformaNotFoundException.java
-│       │   │   └── resources/
-│       │   │       ├── sql
-│       │   │       │   └── data.sql
-│       │   │       └── application.properties
-│       │   └── test/
-│       │       └── java/ifc33b/dwesc/ranking/
-│       │           └── GestorSeriesPlataformesApplicationTests.java
-│       └── target/ (generado por Maven)
-└── front-end/
-    └── gestor-series-plataformes/
-        ├── angular.json
-        ├── package.json
-        ├── tsconfig.json
-        ├── tsconfig.app.json
-        ├── tsconfig.spec.json
-        ├── README.md
-        ├── public/
-        ├── src/
-        │   ├── index.html
-        │   ├── main.ts
-        │   ├── styles.scss
-        │   └── app/
-        │       ├── app.config.ts
-        │       ├── app.html
-        │       ├── app.routes.ts
-        │       ├── app.scss
-        │       ├── app.ts
-        │       ├── app.spec.ts
-        │       ├── components/
-        │       │   ├── formulari-series/
-        │       │   │   ├── formulari-series.html
-        │       │   │   ├── formulari-series.scss
-        │       │   │   ├── formulari-series.ts
-        │       │   │   └── formulari-series.spec.ts
-        │       │   ├── llista-plataformes/
-        │       │   │   ├── llista-plataformes.html
-        │       │   │   ├── llista-plataformes.scss
-        │       │   │   ├── llista-plataformes.ts
-        │       │   │   └── llista-plataformes.spec.ts
-        │       │   └── llista-series/
-        │       │       ├── llista-series.html
-        │       │       ├── llista-series.scss
-        │       │       ├── llista-series.ts
-        │       │       └── llista-series.spec.ts
-        │       ├── models/
-        │       │   ├── index.ts
-        │       │   ├── serie.model.ts
-        │       │   ├── serie.model.spec.ts
-        │       │   ├── plataforma.model.ts
-        │       │   └── plataforma.model.spec.ts
-        │       └── services/
-        │           ├── gestor.service.ts
-        │           └── gestor.service.spec.ts
-```
+### build-and-test
+
+Este job se encarga de compilar y validar el proyecto Java.
+
+Pasos que realiza:
+
+- Checkout del código del repositorio.
+- Configuración de JDK 21 con cache de Maven.
+- Ejecución de `mvn clean install` para compilar el proyecto.
+- Ejecución de `mvn checkstyle:check` para validar el estilo del código.
+- Ejecución de `mvn test` para lanzar los tests.
+
+> [!NOTE]
+> Este job garantiza que el proyecto compila correctamente, pasa los tests y cumple las reglas de calidad antes de continuar.
+
+### build-docker-image
+
+Este job depende del anterior y solo se ejecuta si el build y los tests han sido correctos.
+
+Pasos que realiza:
+
+- Checkout del código.
+- Construcción de las imágenes con `docker compose build`.
+- Arranque de los contenedores con `docker compose up -d`.
+- Comprobación del estado de salud (healthcheck) de PostgreSQL y Tomcat mediante bucles que esperan hasta que estén en estado `healthy`.
+
+> [!NOTE]
+> Este job valida que la aplicación puede desplegarse correctamente en Docker y que los servicios principales arrancan sin errores.
